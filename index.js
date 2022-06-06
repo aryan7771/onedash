@@ -31,7 +31,10 @@ const client = redis.createClient({
 
 app.get("/",async function(req,res){
 
-    await client.connect();
+    await client.connect({
+        host: '34.209.234.54',
+    port: 6379,
+    });
 
     client.on('error', err => {
         console.log('Error ' + err);

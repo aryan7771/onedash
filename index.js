@@ -7,6 +7,7 @@ const client = redis.createClient({
     port: 6379,
   });
 
+client.connect();
 client.on("connect",()=>{
     console.log("Client Connected Successfully")
 })
@@ -29,7 +30,7 @@ client.on("error",(err)=>{
 
 app.get("/",async function(req,res){
 
-    //await client.connect();
+    await client.connect();
 
     client.on('error', err => {
         console.log('Error ' + err);

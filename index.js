@@ -11,11 +11,11 @@ client.connect();
 client.on("connect",()=>{
     console.log("Client Connected Successfully")
 })
-client.set("foo","baar")
+//client.set("foo","baar")
 // client.on("ready",()=>{
 //     console.log("Client connected to redis and ready to use")
 // })
-client.get("foo")
+//client.get("foo")
 console.log(client.get("foo"))
 client.on("error",(err)=>{
     console.log("Error from log "+err.message)
@@ -31,14 +31,13 @@ client.on("error",(err)=>{
 
 app.get("/",async function(req,res){
 
-    await client.connect();
+    await client.set("foo","baar")
 
-    client.on('error', err => {
-        console.log('Error ' + err);
-    });
+    console.log(await client.get("foo"))
+
+    
 
     res.send("Hello There, This is OneDash Demo Project")
-    await client.SET("foo","baar")
 })
 
 app.listen(8080,function(){

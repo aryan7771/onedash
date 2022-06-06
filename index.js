@@ -11,11 +11,12 @@ client.connect();
 client.on("connect",()=>{
     console.log("Client Connected Successfully")
 })
-//client.set("foo","baar")
+client.set("foo","baar")
 // client.on("ready",()=>{
 //     console.log("Client connected to redis and ready to use")
 // })
-// client.get("foo")
+client.get("foo")
+console.log(client.get("foo"))
 client.on("error",(err)=>{
     console.log("Error from log "+err.message)
 })

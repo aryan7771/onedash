@@ -5,8 +5,6 @@ const redis = require("redis");
 const client = redis.createClient({
     host: '34.209.234.54',
     port: 6379,
-    password:"@29Devil1993@",
-    enableOfflineQueue: false,
   });
 
 // client.on("connect",()=>{
@@ -33,7 +31,7 @@ app.get("/",async function(req,res){
 
     await client.connect({
         host: '34.209.234.54',
-    port: 6379,
+        port: 6379,
     });
 
     client.on('error', err => {

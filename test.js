@@ -2,12 +2,24 @@ const express = require("express");
 const cli = require("nodemon/lib/cli");
 const app = express();
 const redis = require("redis");
-const client = redis.createClient({
-    host: '34.209.234.54',
-    port: 6379,
-    password:"@29Devil1993@",
-    enableOfflineQueue: false,
-  });
+// const client = redis.createClient({
+//     host: '34.209.234.54',
+//     port: 6379,
+//     password:"@29Devil1993@",
+//     enableOfflineQueue: false,
+//   });
+
+
+
+// const client = redis.createClient({
+//     host: '34.209.234.54',
+//     port: 6379,
+// });
+
+// client.on('error', err => {
+//     console.log('Error ' + err);
+// });
+
 
 // client.on("connect",()=>{
 //     console.log("Client Connected Successfully")
@@ -30,17 +42,23 @@ const client = redis.createClient({
 // })
 
 app.get("/",async function(req,res){
+    // await client.connect({
+    //     host: '34.209.234.54',
+    // port: 6379,
+    // password:"@29Devil1993@",
+    // });
 
+    const client = redis.createClient({
+        host: '34.209.234.54',
+        port: 6379,
+    });
     await client.connect();
-
     client.on('error', err => {
         console.log('Error ' + err);
     });
-
     res.send("Hello There, This is OneDash Demo Project")
     await client.SET("foo","baar")
 })
-
 app.listen(8080,function(){
     console.log("Port is running on 8080")
 });
